@@ -2,51 +2,56 @@ package com.winer.broker;
 
 import android.graphics.Color;
 import android.support.v4.app.FragmentTabHost;
-import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
 import android.view.LayoutInflater;
-import android.view.Menu;
 import android.view.View;
 import android.widget.ImageView;
 import android.widget.TabHost;
 import android.widget.TabWidget;
 import android.widget.TextView;
 
-import com.winer.broker.Utils.TabDb;
+import com.winer.broker.util.TabDb;
 
-public class MainActivity extends AppCompatActivity implements TabHost.OnTabChangeListener {
+
+public class MainActivity extends BaseActivity implements TabHost.OnTabChangeListener {
     private FragmentTabHost tabHost;
+
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
-        tabHost=(FragmentTabHost)super.findViewById(android.R.id.tabhost);
-        tabHost.setup(this,super.getSupportFragmentManager()
-                ,R.id.contentLayout);
+        tabHost = (FragmentTabHost) super.findViewById(android.R.id.tabhost);
+        tabHost.setup(this, super.getSupportFragmentManager()
+                , R.id.contentLayout);
         tabHost.getTabWidget().setDividerDrawable(null);
         tabHost.setOnTabChangedListener(this);
         initTab();
-
+        initView();
     }
 
-    private void initTab(){
-        String tabs[]= TabDb.getTabsTxt();
-        for(int i=0;i<tabs.length;i++){
-            TabHost.TabSpec tabSpec=tabHost.newTabSpec(tabs[i]).setIndicator(getTabView(i));
-            tabHost.addTab(tabSpec,TabDb.getFragments()[i],null);
+    @Override
+    public void initView() {
+        topBar.getTopBarLeftTextView().setBackgroundResource(0);
+    }
+
+    private void initTab() {
+        String tabs[] = TabDb.getTabsTxt();
+        for (int i = 0; i < tabs.length; i++) {
+            TabHost.TabSpec tabSpec = tabHost.newTabSpec(tabs[i]).setIndicator(getTabView(i));
+            tabHost.addTab(tabSpec, TabDb.getFragments()[i], null);
             tabHost.setTag(i);
         }
     }
 
-    private View getTabView(int idx){
-        View view= LayoutInflater.from(this).inflate(R.layout.footer_tabs,null);
-        ((TextView)view.findViewById(R.id.tvTab)).setText(TabDb.getTabsTxt()[idx]);
-        if(idx==0){
+    private View getTabView(int idx) {
+        View view = LayoutInflater.from(this).inflate(R.layout.footer_tabs, null);
+        ((TextView) view.findViewById(R.id.tvTab)).setText(TabDb.getTabsTxt()[idx]);
+        if (idx == 0) {
 
-            ((TextView)view.findViewById(R.id.tvTab)).setTextColor(Color.RED);
-            ((ImageView)view.findViewById(R.id.ivImg)).setImageResource(TabDb.getTabsImgLight()[idx]);
-        }else{
-            ((ImageView)view.findViewById(R.id.ivImg)).setImageResource(TabDb.getTabsImg()[idx]);
+            ((TextView) view.findViewById(R.id.tvTab)).setTextColor(Color.RED);
+            ((ImageView) view.findViewById(R.id.ivImg)).setImageResource(TabDb.getTabsImgLight()[idx]);
+        } else {
+            ((ImageView) view.findViewById(R.id.ivImg)).setImageResource(TabDb.getTabsImg()[idx]);
         }
         return view;
     }
@@ -58,16 +63,17 @@ public class MainActivity extends AppCompatActivity implements TabHost.OnTabChan
         updateTab();
 
     }
-    private void updateTab(){
-        TabWidget tabw=tabHost.getTabWidget();
-        for(int i=0;i<tabw.getChildCount();i++){
-            View view=tabw.getChildAt(i);
-            ImageView iv=(ImageView)view.findViewById(R.id.ivImg);
-            if(i==tabHost.getCurrentTab()){
-                ((TextView)view.findViewById(R.id.tvTab)).setTextColor(Color.RED);
+
+    private void updateTab() {
+        TabWidget tabw = tabHost.getTabWidget();
+        for (int i = 0; i < tabw.getChildCount(); i++) {
+            View view = tabw.getChildAt(i);
+            ImageView iv = (ImageView) view.findViewById(R.id.ivImg);
+            if (i == tabHost.getCurrentTab()) {
+                ((TextView) view.findViewById(R.id.tvTab)).setTextColor(Color.RED);
                 iv.setImageResource(TabDb.getTabsImgLight()[i]);
-            }else{
-                ((TextView)view.findViewById(R.id.tvTab)).setTextColor(getResources().getColor(R.color.foot_txt_gray));
+            } else {
+                ((TextView) view.findViewById(R.id.tvTab)).setTextColor(getResources().getColor(R.color.foot_txt_gray));
                 iv.setImageResource(TabDb.getTabsImg()[i]);
             }
 
