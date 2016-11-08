@@ -2,6 +2,7 @@ package com.winer.broker.util;
 
 import com.winer.broker.R;
 import com.winer.broker.fragment.BaseFragment;
+import com.winer.broker.fragment.MessageFragment;
 
 
 public class TabDb {
@@ -18,7 +19,7 @@ public class TabDb {
 		return ids;
 	}
 	public static Class[] getFragments(){
-		Class[] clz={BaseFragment.class,BaseFragment.class,BaseFragment.class,BaseFragment.class};
+		Class[] clz={MessageFragment.class,MessageFragment.class,MessageFragment.class,MessageFragment.class};
 		return clz;
 	}
 }

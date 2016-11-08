@@ -13,16 +13,7 @@ import android.widget.TextView;
  * Created by guugangzhu on 2016/11/1.
  */
 
-public class BaseFragment extends Fragment {
+public abstract class BaseFragment extends Fragment {
 
-    @Nullable
-    @Override
-    public View onCreateView(LayoutInflater inflater, @Nullable ViewGroup container, @Nullable Bundle savedInstanceState) {
-        TextView tvTitle=new TextView(super.getActivity());
-        tvTitle.setText("发现");
-        tvTitle.setLayoutParams(new ViewGroup.LayoutParams(ViewGroup.LayoutParams.MATCH_PARENT, ViewGroup.LayoutParams.MATCH_PARENT));
-        tvTitle.setGravity(Gravity.CENTER);
-        tvTitle.setTextSize(30);
-        return tvTitle;
-    }
+    public abstract void initView(View view);
 }
