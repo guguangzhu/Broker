@@ -10,11 +10,11 @@ public class TabDb {
 		return tabs;
 	}
 	public static int[] getTabsImg(){
-		int[] ids={R.mipmap.foot_news_normal,R.mipmap.foot_read_normal,R.mipmap.foot_vdio_normal,R.mipmap.foot_out_normal};
+		int[] ids={R.mipmap.ic_message_nor,R.mipmap.ic_house_nor,R.mipmap.ic_client_nor,R.mipmap.ic_mine_nor};
 		return ids;
 	}
 	public static int[] getTabsImgLight(){
-		int[] ids={R.mipmap.foot_news_light,R.mipmap.foot_read_light,R.mipmap.foot_vdio_light, R.mipmap.foot_out_light};
+		int[] ids={R.mipmap.ic_message_selected,R.mipmap.ic_house_selected,R.mipmap.ic_client_selected, R.mipmap.ic_mine_selected};
 		return ids;
 	}
 	public static Class[] getFragments(){
