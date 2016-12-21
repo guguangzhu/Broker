@@ -32,7 +32,7 @@ import okhttp3.Response;
 /**
  * Created by Zhao Haibin on 2016/1/27.
  */
-public class SpiHandler extends BaseHandler implements Callback {
+public class HouseHandler extends BaseHandler implements Callback {
     private static final int REFRESH = 0x001;
     private Type type;
     protected static Handler handler = new Handler(Looper.getMainLooper()) {
@@ -50,7 +50,7 @@ public class SpiHandler extends BaseHandler implements Callback {
         }
     };
 
-    public SpiHandler(Context context, Type type) {
+    public HouseHandler(Context context, Type type) {
         super(context);
         this.type = type;
 

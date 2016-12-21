@@ -1,6 +1,7 @@
 package com.toda.broker.util;
 
 import com.toda.broker.R;
+import com.toda.broker.fragment.ClientListFragment;
 import com.toda.broker.fragment.MessageFragment;
 
 
@@ -10,15 +11,15 @@ public class TabDb {
 		return tabs;
 	}
 	public static int[] getTabsImg(){
-		int[] ids={R.mipmap.ic_message_nor,R.mipmap.ic_house_nor,R.mipmap.ic_client_nor,R.mipmap.ic_mine_nor};
+		int[] ids={R.mipmap.foot_news_normal,R.mipmap.foot_read_normal,R.mipmap.foot_vdio_normal,R.mipmap.foot_out_normal};
 		return ids;
 	}
 	public static int[] getTabsImgLight(){
-		int[] ids={R.mipmap.ic_message_selected,R.mipmap.ic_house_selected,R.mipmap.ic_client_selected, R.mipmap.ic_mine_selected};
+		int[] ids={R.mipmap.foot_news_light,R.mipmap.foot_read_light,R.mipmap.foot_vdio_light, R.mipmap.foot_out_light};
 		return ids;
 	}
 	public static Class[] getFragments(){
-		Class[] clz={MessageFragment.class,MessageFragment.class,MessageFragment.class,MessageFragment.class};
+		Class[] clz={MessageFragment.class,MessageFragment.class,ClientListFragment.class,MessageFragment.class};
 		return clz;
 	}
 }

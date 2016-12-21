@@ -3,7 +3,7 @@
     android:layout_width="match_parent"
     android:layout_height="match_parent">
 
-    <com.toda.broker.view.SolarBaoListView
+    <com.toda.broker.view.CommonListView
         android:id="@+id/lv_message"
         android:background="@color/white"
         android:layout_width="match_parent"

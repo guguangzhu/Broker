@@ -4,6 +4,13 @@ package com.toda.broker.util;
 import android.content.Context;
 import android.net.ConnectivityManager;
 import android.os.Environment;
+import android.view.Gravity;
+import android.widget.ImageView;
+import android.widget.LinearLayout;
+import android.widget.TextView;
+import android.widget.Toast;
+
+import com.toda.broker.R;
 
 import java.io.BufferedReader;
 import java.io.File;
@@ -206,6 +213,38 @@ public class UtilTools {
 		lastClickId=id;
 		lastClickTime = time;
 		return false;
+	}
+
+	public static void toast(Context context,int img, String str) {
+		Toast toast = Toast.makeText(context.getApplicationContext(),
+				str, Toast.LENGTH_SHORT);
+		toast.setGravity(Gravity.CENTER, 0, 0);
+		LinearLayout toastView = (LinearLayout) toast.getView();
+		toastView.setBackgroundResource(R.drawable.bg_trans_conner);
+		TextView tv=(TextView)toastView.getChildAt(0);
+		tv.setBackgroundDrawable(null);
+//        toastView.setMinimumWidth(DeviceUtils.dip2px(context, 120));
+		toastView.setPadding(DeviceUtils.dip2px(context, 16), DeviceUtils.dip2px(context, 8), DeviceUtils.dip2px(context, 16), DeviceUtils.dip2px(context,8));
+		ImageView imageCodeProject = new ImageView(context.getApplicationContext());
+		imageCodeProject.setImageResource(img);
+		toastView.addView(imageCodeProject, 0);
+		toast.show();
+	}
+
+	public static void toast(Context context, String str) {
+		toast(context, str, Toast.LENGTH_SHORT);
+	}
+
+	public static void toast(Context context, String str,int duration) {
+		Toast toast = Toast.makeText(context.getApplicationContext(),
+				str, duration);
+		toast.setGravity(Gravity.CENTER, 0, 0);
+		LinearLayout toastView = (LinearLayout) toast.getView();
+		toastView.setPadding(DeviceUtils.dip2px(context, 16), DeviceUtils.dip2px(context, 8), DeviceUtils.dip2px(context, 16), DeviceUtils.dip2px(context,8));
+		toastView.setBackgroundResource(R.drawable.bg_trans_conner);
+		TextView tv=(TextView)toastView.getChildAt(0);
+		tv.setBackgroundDrawable(null);
+		toast.show();
 	}
 	
 }

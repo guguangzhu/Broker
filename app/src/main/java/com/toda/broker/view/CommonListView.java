@@ -25,7 +25,7 @@ import com.toda.broker.view.pullview.PullToRefreshListView;
 import java.lang.reflect.Field;
 import java.util.List;
 
-public class SolarBaoListView extends LinearLayout implements OnClickListener,
+public class CommonListView extends LinearLayout implements OnClickListener,
 		OnRefreshListener2<ListView> {
 	private Context context;
 	public PullToRefreshListView listView;
@@ -44,7 +44,7 @@ public class SolarBaoListView extends LinearLayout implements OnClickListener,
 	private boolean showDialog;;
 	private boolean canLoadMore=true;;
 
-	public SolarBaoListView(Context context, AttributeSet attrs) {
+	public CommonListView(Context context, AttributeSet attrs) {
 		super(context, attrs);
 		this.context = context;
 		init();
