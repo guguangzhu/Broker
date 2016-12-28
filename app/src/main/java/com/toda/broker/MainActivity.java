@@ -14,6 +14,7 @@ import android.widget.TabHost;
 import android.widget.TabWidget;
 import android.widget.TextView;
 
+import com.toda.broker.adapter.MyHouseListAdapter;
 import com.toda.broker.util.TabDb;
 
 import io.rong.imkit.RongIM;
@@ -22,6 +23,8 @@ import io.rong.imlib.RongIMClient;
 
 public class MainActivity extends BaseActivity implements TabHost.OnTabChangeListener {
     private FragmentTabHost tabHost;
+    private String[] tabs;
+    private int currentIndex;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -43,7 +46,7 @@ public class MainActivity extends BaseActivity implements TabHost.OnTabChangeLis
     }
 
     private void initTab() {
-        String tabs[] = TabDb.getTabsTxt();
+        tabs= TabDb.getTabsTxt();
         for (int i = 0; i < tabs.length; i++) {
             TabHost.TabSpec tabSpec = tabHost.newTabSpec(tabs[i]).setIndicator(getTabView(i));
             tabHost.addTab(tabSpec, TabDb.getFragments()[i], null);
@@ -64,12 +67,48 @@ public class MainActivity extends BaseActivity implements TabHost.OnTabChangeLis
         return view;
     }
 
+    @Override
+    public void onTopRightClick() {
+        super.onTopRightClick();
+        if (currentIndex==1){
+           goPage(MyHouseListActivity.class);
+        }
+    }
 
     @Override
     public void onTabChanged(String tabId) {
         // TODO Auto-generated method stub
         updateTab();
+        updateTitle(tabId);
+    }
 
+    private void updateTitle(String tabId){
+        switch (tabId){
+            case "消息":
+                setTitle("消息列表");
+                setTopBarRightText("");
+                currentIndex=0;
+                break;
+            case "二手房源":
+                setTitle("房源");
+                setTopBarRightText("我的房源");
+                currentIndex=1;
+                break;
+            case "客户":
+                setTitle("客户列表");
+                setTopBarRightText("");
+                currentIndex=2;
+                break;
+            case "我的":
+                setTitle("我的");
+                setTopBarRightText("");
+                currentIndex=3;
+                break;
+            default:
+                setTitle("消息列表");
+                setTopBarRightText("");
+                break;
+        }
     }
 
     private void updateTab() {

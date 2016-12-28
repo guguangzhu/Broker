@@ -4,6 +4,7 @@ import com.toda.broker.R;
 import com.toda.broker.fragment.ClientListFragment;
 import com.toda.broker.fragment.MessageFragment;
 import com.toda.broker.fragment.MineFragment;
+import com.toda.broker.fragment.SecondHouseListFragment;
 
 
 public class TabDb {
@@ -20,7 +21,7 @@ public class TabDb {
 		return ids;
 	}
 	public static Class[] getFragments(){
-		Class[] clz={MessageFragment.class,MessageFragment.class,ClientListFragment.class,MineFragment.class};
+		Class[] clz={MessageFragment.class,SecondHouseListFragment.class,ClientListFragment.class,MineFragment.class};
 		return clz;
 	}
 }

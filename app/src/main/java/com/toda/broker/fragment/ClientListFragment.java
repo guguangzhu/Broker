@@ -25,7 +25,7 @@ import butterknife.ButterKnife;
  * Created by guugangzhu on 2016/12/21.
  */
 
-public class ClientListFragment extends BaseFragment implements AdapterView.OnItemClickListener{
+public class ClientListFragment extends BaseFragment implements AdapterView.OnItemClickListener,CounselorAdapter.OnMessageClickListener{
 
     @BindView(R.id.lv_message)
     CommonListView lvMessage;
@@ -57,6 +57,7 @@ public class ClientListFragment extends BaseFragment implements AdapterView.OnIt
         list.add("");
         list.add("");
         adapter=new CounselorAdapter(getContext(),mList);
+        adapter.setOnMessageClickListener(this);
         lvMessage.setList(mList);
         lvMessage.setAdapter(adapter);
         lvMessage.notifyDataSetChanged(list);
@@ -65,5 +66,10 @@ public class ClientListFragment extends BaseFragment implements AdapterView.OnIt
     @Override
     public void onItemClick(AdapterView<?> parent, View view, int position, long id) {
         goPage(ClientDetailActivity.class);
+    }
+
+    @Override
+    public void onMessageClick(int position) {
+        toast("message"+position);
     }
 }

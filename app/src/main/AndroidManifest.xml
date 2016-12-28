@@ -21,6 +21,10 @@
         <activity android:name=".LoginActivity" android:screenOrientation="portrait"/>
         <!--客户详情-->
         <activity android:name=".ClientDetailActivity" android:screenOrientation="portrait"/>
+        <!--我的房源-->
+        <activity android:name=".MyHouseListActivity" android:screenOrientation="portrait"/>
+        <!--房源信息-->
+        <activity android:name=".HouseInfoActivity" android:screenOrientation="portrait"/>
         <!--聊天-->
         <activity android:name=".ChatActivity" android:screenOrientation="portrait"
             android:windowSoftInputMode="stateHidden|adjustResize">

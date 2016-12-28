@@ -28,6 +28,7 @@ public class CounselorAdapter extends BaseAdapter {
     private Context mContext;
     private List<String> list;
     private LayoutInflater mInflater;
+    private OnMessageClickListener listener;
 
     public CounselorAdapter(Context mContext, List<String> list) {
         this.mContext = mContext;
@@ -51,7 +52,7 @@ public class CounselorAdapter extends BaseAdapter {
     }
 
     @Override
-    public View getView(int position, View convertView, ViewGroup parent) {
+    public View getView(final int position, View convertView, ViewGroup parent) {
         ViewHolder mViewHolder;
         if (convertView == null) {
             convertView = mInflater.inflate(R.layout.item_counselor, null);
@@ -60,6 +61,15 @@ public class CounselorAdapter extends BaseAdapter {
         } else {
             mViewHolder = (ViewHolder) convertView.getTag();
         }
+
+        mViewHolder.btnChat.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                if(listener!=null){
+                    listener.onMessageClick(position);
+                }
+            }
+        });
 
 
         return convertView;
@@ -86,5 +96,13 @@ public class CounselorAdapter extends BaseAdapter {
         ViewHolder(View view) {
             ButterKnife.bind(this, view);
         }
+    }
+
+    public void setOnMessageClickListener(OnMessageClickListener listener){
+        this.listener=listener;
+    }
+
+    public interface OnMessageClickListener{
+       void onMessageClick(int position);
     }
 }
