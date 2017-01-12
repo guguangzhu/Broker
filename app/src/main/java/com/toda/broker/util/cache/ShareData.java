@@ -5,7 +5,7 @@ import android.content.SharedPreferences;
 
 public class ShareData {
 	
-	private static final String SP_NAME = "house";
+	private static final String SP_NAME = "broker";
 	public static final String FIRST_OPEN_CODE ="FIRST_OPEN_CODE";   //是否显示引导页
 	public static final String DOWNLOAD_CACHE_ID = "download_cache_id";//下载中断时缓存到本地的ID；
 

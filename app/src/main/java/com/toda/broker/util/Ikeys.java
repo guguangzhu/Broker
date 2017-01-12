@@ -9,6 +9,9 @@ public interface Ikeys {
     String KEY_SESSION ="SESSION";
     String KEY_USER_NAME ="user_name";
     String KEY_REAL_NAME ="real_name";
+    String KEY_USER_ID = "user_id";
+    String KEY_IM_TOKEN = "im_token";
+    String KEY_IM_ID = "im_id";
 
     String KEY_PRIVATE_KEY = "key_private_key";
 

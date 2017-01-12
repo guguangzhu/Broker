@@ -12,11 +12,18 @@ import android.view.ViewGroup;
 import android.widget.RelativeLayout;
 import android.widget.Toast;
 
+import com.toda.broker.model.HouseHandler;
+import com.toda.broker.model.RequestParams;
+import com.toda.broker.util.HandlerRequestErr;
 import com.toda.broker.util.Ikeys;
 import com.toda.broker.app.BrokerApplication;
 import com.toda.broker.model.ResponseListener;
 import com.toda.broker.model.ResultData;
 import com.toda.broker.view.TopBar;
+
+import java.lang.reflect.Type;
+import java.util.ArrayList;
+import java.util.List;
 
 import okhttp3.Call;
 
@@ -29,7 +36,7 @@ public abstract class BaseActivity extends AppCompatActivity implements Response
     private BrokerApplication app;
     public TopBar topBar;
     private RelativeLayout cltParent;
-
+    private List<Call> calls;
     private View contentView;
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -228,5 +235,61 @@ public abstract class BaseActivity extends AppCompatActivity implements Response
     @Override
     public void onTopRightSecondClick() {
 
+    }
+
+    protected HouseHandler startRequest(int flag, RequestParams params, Type type) {
+        return startRequest(flag, params, type, true);
+    }
+
+    protected HouseHandler startRequest(int flag, RequestParams params, Type type, boolean showDialog) {
+        if (!(this instanceof ResponseListener)) {
+            return null;
+        }
+        HouseHandler handler = new HouseHandler(this, type);
+        Call call = handler.start(flag, params, (ResponseListener) this, showDialog);
+        addCall(call);
+        return handler;
+    }
+
+    private void addCall(Call call) {
+        if (call == null) {
+            return;
+        }
+        if (calls == null) {
+            calls = new ArrayList<>();
+        }
+        calls.add(call);
+    }
+
+    /***
+     * 网络回调处理，提示错误信息
+     *
+     * @param data
+     * @return
+     */
+    public boolean handlerRequestErr(ResultData data) {
+        return HandlerRequestErr.handlerRequestErr(this, data);
+    }
+
+    /***
+     * 网络回调处理，提示错误信息
+     *
+     * @param data
+     * @param defaultStr 无错误信息时的默认提示信息
+     * @return
+     */
+    public boolean handlerRequestErr(ResultData data, String defaultStr) {
+        return HandlerRequestErr.handlerRequestErr(this, data, defaultStr);
+    }
+
+    /***
+     * 网络回调处理，提示错误信息
+     *
+     * @param data
+     * @param isTips 是否提示错误信息
+     * @return
+     */
+    public boolean handlerRequestErr(ResultData data, boolean isTips) {
+        return HandlerRequestErr.handlerRequestErr(this, data, isTips);
     }
 }

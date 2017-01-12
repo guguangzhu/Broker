@@ -6,6 +6,7 @@ import android.content.Context;
 import com.toda.broker.util.FileUtils;
 import com.toda.broker.util.Iconfig;
 import com.toda.broker.util.ImageUtils;
+import com.toda.broker.util.cache.ShareData;
 
 import java.io.File;
 
@@ -25,6 +26,7 @@ public class BrokerApplication extends Application {
     @Override
     public void onCreate() {
         super.onCreate();
+        ShareData.init(this);
         RongIM.init(this);
         initImageLoader(getApplicationContext());
     }

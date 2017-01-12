@@ -21,4 +21,9 @@ public class HouseInfoActivity extends BaseActivity {
         setTitle("房源资料");
         setTopBarRightText("核验");
     }
+
+    @Override
+    public void onTopRightClick() {
+        goPage(CheckHouseActivity.class);
+    }
 }

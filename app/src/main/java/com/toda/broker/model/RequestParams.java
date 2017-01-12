@@ -15,7 +15,7 @@ public class RequestParams {
     //是否为post请求，false为get
     private boolean isPost = true;
     //是否加密
-    private boolean isEncrypt = true;
+    private boolean isEncrypt = false;
     private int tag = -1;
     private String url;
 

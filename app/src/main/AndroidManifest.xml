@@ -9,22 +9,27 @@
         android:label="@string/app_name"
         android:supportsRtl="true"
         android:theme="@style/AppTheme">
-        <!--首页-->
-        <activity android:name="com.toda.broker.MainActivity">
+        <!--闪屏-->
+        <activity android:name=".SplashActivity">
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
 
                 <category android:name="android.intent.category.LAUNCHER" />
             </intent-filter>
         </activity>
+        <!--首页-->
+        <activity android:name=".MainActivity"/>
         <!--登录-->
-        <activity android:name=".LoginActivity" android:screenOrientation="portrait"/>
+        <activity android:name=".LoginActivity" android:screenOrientation="portrait" android:windowSoftInputMode="stateHidden|adjustResize">
+        </activity>
         <!--客户详情-->
         <activity android:name=".ClientDetailActivity" android:screenOrientation="portrait"/>
         <!--我的房源-->
         <activity android:name=".MyHouseListActivity" android:screenOrientation="portrait"/>
         <!--房源信息-->
         <activity android:name=".HouseInfoActivity" android:screenOrientation="portrait"/>
+        <!--核验-->
+        <activity android:name=".CheckHouseActivity" android:screenOrientation="portrait"/>
         <!--聊天-->
         <activity android:name=".ChatActivity" android:screenOrientation="portrait"
             android:windowSoftInputMode="stateHidden|adjustResize">

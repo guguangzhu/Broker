@@ -79,27 +79,28 @@ public class HouseHandler extends BaseHandler implements Callback {
 //        String realResult= AESCrypt.getInstance().decrypt(resultStr);
         ResultData data = new ResultData();
         try {
+//            if(StringUtils.isEmpty(resultStr)){
+//                showSessionErrDialog();
+//                return;
+//            }
             JSONObject resJson = new JSONObject(resultStr);
             String resStr=resJson.optString("response");
-            if(StringUtils.isEmpty(resStr)){
-                showSessionErrDialog();
-                return;
-            }
-            String realResult= AESCrypt.getInstance().decrypt(URLDecoder.decode(resStr,"utf-8"));
-            LogUtils.e("解密数据="+realResult);
-            JSONObject json = new JSONObject(realResult);
-            String code = json.optString("status");
+
+//            String realResult= AESCrypt.getInstance().decrypt(URLDecoder.decode(resStr,"utf-8"));
+//            LogUtils.e("解密数据="+realResult);
+//            JSONObject json = new JSONObject(realResult);
+            String code = resJson.optString("errorCode");
             if(ErrorCode.SESSION_CLEAR.equals(code)||ErrorCode.SESSION_ERR.equals(code)){
                 showSessionErrDialog();
                 return;
             }
             data.setCode(TextUtils.isEmpty(code) ? "" : code);
-            data.setMsg(json.optString("msg"));
+            data.setMsg(resJson.optString("errorMsg"));
             if(TextUtils.isEmpty(data.getMsg())||data.getMsg().equals("null")){
                 data.setMsg("");
             }
-            if (type != null&&json.has("data")&&!json.getString("data").equals("[]")) {
-                data.setData(GsonUtil.fromJson(json.getString("data"), type));
+            if (type != null&&resJson.has("data")&&!resJson.getString("data").equals("[]")) {
+                data.setData(GsonUtil.fromJson(resJson.getString("data"), type));
             }
         } catch (Exception e) {
             e.printStackTrace();
