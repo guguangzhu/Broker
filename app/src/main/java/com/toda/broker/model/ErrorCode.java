@@ -6,7 +6,7 @@ package com.toda.broker.model;
  */
 public class ErrorCode {
 	/**列表无数据 **/
-	public static final String SUCCESS="200";
+	public static final String SUCCESS="0";
 	/**绑卡、支付成功 **/
 	public static final String SUCCESS_CODE="0000";
 	/**列表无数据 **/

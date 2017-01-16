@@ -37,7 +37,7 @@ public class MainActivity extends BaseActivity implements TabHost.OnTabChangeLis
         tabHost.setOnTabChangedListener(this);
         initTab();
         initView();
-        connect("ObfZ5tvyhZf+U8/rYlZIV8BZ+na4iAF/CAhbEd/Vi089oESogr1b3WSMUzu2O0mCRi1Cg1RneWBp+aWJDZ2nvw==");
+        connect("xD1kX2U06GNgNF/KPDoSWx+wCT3MXX5+v46TMgkRxL5RTg8RfBvpQZDyaEaSi5sf00cc3MnwiEjG8L+bECrPDg==");
     }
 
     @Override
@@ -147,7 +147,7 @@ public class MainActivity extends BaseActivity implements TabHost.OnTabChangeLis
                 @Override
                 public void onTokenIncorrect() {
 
-                    Log.d("LoginActivity", "--onTokenIncorrect");
+                    Log.e("MainActivity", "--onTokenIncorrect");
                 }
 
                 /**
@@ -157,9 +157,7 @@ public class MainActivity extends BaseActivity implements TabHost.OnTabChangeLis
                 @Override
                 public void onSuccess(String userid) {
 
-                    Log.d("LoginActivity", "--onSuccess" + userid);
-                    startActivity(new Intent(MainActivity.this, MainActivity.class));
-                    finish();
+                    Log.e("MainActivity", "--onSuccess" + userid);
                 }
 
                 /**
@@ -169,7 +167,7 @@ public class MainActivity extends BaseActivity implements TabHost.OnTabChangeLis
                 @Override
                 public void onError(RongIMClient.ErrorCode errorCode) {
 
-                    Log.d("LoginActivity", "--onError" + errorCode);
+                    Log.e("MainActivity", "--onError" + errorCode);
                 }
             });
         }

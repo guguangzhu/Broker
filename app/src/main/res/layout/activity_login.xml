@@ -39,7 +39,6 @@
                         android:layout_height="35dp"
                         android:background="@drawable/bg_transparent"
                         android:drawablePadding="3dp"
-                        android:inputType="number"
                         android:text="13800138000"
                         android:maxLength="11"
                         android:textColor="@color/text_common_color" />

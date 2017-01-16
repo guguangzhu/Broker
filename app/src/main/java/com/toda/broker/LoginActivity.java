@@ -9,11 +9,14 @@ import android.widget.Button;
 import android.widget.LinearLayout;
 import android.widget.ScrollView;
 
+import com.toda.broker.bean.UserBean;
 import com.toda.broker.model.RequestParams;
 import com.toda.broker.model.ResultData;
+import com.toda.broker.statics.ErrorTips;
 import com.toda.broker.statics.Task;
 import com.toda.broker.util.Iconfig;
 import com.toda.broker.util.StringUtils;
+import com.toda.broker.util.UserUtils;
 import com.toda.broker.view.ClearableEditText;
 
 import butterknife.BindView;
@@ -83,7 +86,7 @@ public class LoginActivity extends BaseActivity {
         RequestParams params = new RequestParams(Iconfig.URL_LOGIN);
         params.add("username", etPhone.getText().toString());
         params.add("password", etPwd.getText().toString());
-        startRequest(Task.LOGIN, params, null);
+        startRequest(Task.LOGIN, params, UserBean.class);
     }
 
     @Override
@@ -92,14 +95,14 @@ public class LoginActivity extends BaseActivity {
         switch (tag) {
             case Task.LOGIN:
                 if (handlerRequestErr(data)) {
-//                    UserBean userBean = (UserBean) data.getData();
-//                    if (userBean == null) {
-//                        toast(ErrorTips.DATA_ERR);
-//                        return;
-//                    }
-//                    UserUtils.saveLoginData(userBean.getToken(), userBean.getUserId() + "", userBean.getNickname(), userBean.getRealname());
-//                    goPage(MainActivity.class);
-//                    finish();
+                    UserBean userBean = (UserBean) data.getData();
+                    if (userBean == null) {
+                        toast(ErrorTips.DATA_ERR);
+                        return;
+                    }
+                    UserUtils.saveLoginData(userBean.getToken(), userBean.getOperatorId() + "",etPhone.getText().toString() ,userBean.getOperatorName(), userBean.getImToken());
+                    goPage(MainActivity.class);
+                    finish();
                 }
         }
     }

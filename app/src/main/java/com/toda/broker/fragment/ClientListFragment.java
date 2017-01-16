@@ -8,6 +8,7 @@ import android.view.View;
 import android.view.ViewGroup;
 import android.widget.AdapterView;
 
+import com.toda.broker.ChatActivity;
 import com.toda.broker.ClientDetailActivity;
 import com.toda.broker.R;
 import com.toda.broker.adapter.CounselorAdapter;
@@ -70,6 +71,9 @@ public class ClientListFragment extends BaseFragment implements AdapterView.OnIt
 
     @Override
     public void onMessageClick(int position) {
-        toast("message"+position);
+        Bundle bundle=new Bundle();
+        bundle.putString(KEY_IM_ID,"123456");
+        bundle.putString(KEY_DATA,"测试A");
+        goPage(ChatActivity.class,bundle);
     }
 }
