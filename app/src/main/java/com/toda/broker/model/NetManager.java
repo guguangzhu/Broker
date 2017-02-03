@@ -1,12 +1,14 @@
 package com.toda.broker.model;
 
 import android.content.Context;
+import android.text.TextUtils;
 
 
 import com.toda.broker.util.DeviceUtils;
 import com.toda.broker.util.GsonUtil;
 import com.toda.broker.util.LogUtils;
 import com.toda.broker.util.StringUtils;
+import com.toda.broker.util.UserUtils;
 import com.toda.broker.util.crypt.AESCrypt;
 import com.toda.broker.util.crypt.MD5;
 
@@ -170,7 +172,7 @@ public class NetManager {
     private static void paramsOperate(Context context, RequestParams params) {
         addUA(context, params.getParams());
         Map<String,String> map=params.getParams();
-        map.put("token", getToken(map));
+        map.put("sign", getToken(map));
         LogUtils.e("加密前："+StringUtils.getQueryUrl(params.getUrl(), params == null ? null : params.getParams()));
         if (params.isEncrypt()) {
             String param= AESCrypt.getInstance().encrypt(GsonUtil.toJson(map));
@@ -198,9 +200,9 @@ public class NetManager {
             UA.put("channel", DeviceUtils.getChannel(context));
         }
 
-//        if(!TextUtils.isEmpty(UserUtils.getSessionId())){
-//            UA.put("sessionId",UserUtils.getSessionId());
-//        }
+        if(!TextUtils.isEmpty(UserUtils.getSessionId())){
+            UA.put("token",UserUtils.getSessionId());
+        }
         map.putAll(UA);
     }
 
@@ -212,9 +214,9 @@ public class NetManager {
             }
         }
         token=token.substring(0,token.length()-1);
-        LogUtils.e("token:"+token);
+        LogUtils.e("sign:"+token);
         token= MD5.encodeByMD5(MD5.encodeByMD5(token)+TOKEN_KEY);
-        LogUtils.e("token:"+token);
+        LogUtils.e("sign:"+token);
         return token;
 
     }

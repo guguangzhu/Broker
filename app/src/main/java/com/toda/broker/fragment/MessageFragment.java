@@ -8,9 +8,17 @@ import android.view.View;
 import android.view.ViewGroup;
 import android.widget.AdapterView;
 
+import com.toda.broker.MainActivity;
 import com.toda.broker.R;
 import com.toda.broker.adapter.MessageAdapter;
+import com.toda.broker.bean.UserBean;
+import com.toda.broker.model.RequestParams;
+import com.toda.broker.model.ResultData;
+import com.toda.broker.statics.ErrorTips;
+import com.toda.broker.statics.Task;
 import com.toda.broker.util.DeviceUtils;
+import com.toda.broker.util.Iconfig;
+import com.toda.broker.util.UserUtils;
 import com.toda.broker.view.CommonListView;
 
 import java.util.ArrayList;
@@ -18,6 +26,7 @@ import java.util.List;
 
 import butterknife.BindView;
 import butterknife.ButterKnife;
+import okhttp3.Call;
 
 
 /**
@@ -72,6 +81,9 @@ public class MessageFragment extends BaseFragment implements AdapterView.OnItemC
         lvMessage.getListView().setOnItemClickListener(this);
         lvMessage.setAdapter(adapter);
     }
+
+
+
 
     @Override
     public void onItemClick(AdapterView<?> parent, View view, int position, long id) {

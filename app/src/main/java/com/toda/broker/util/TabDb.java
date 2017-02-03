@@ -21,7 +21,7 @@ public class TabDb {
 		return ids;
 	}
 	public static Class[] getFragments(){
-		Class[] clz={MessageFragment.class,SecondHouseListFragment.class,ClientListFragment.class,MineFragment.class};
+		Class[] clz={io.rong.imkit.fragment.ConversationListFragment.class,SecondHouseListFragment.class,ClientListFragment.class,MineFragment.class};
 		return clz;
 	}
 }

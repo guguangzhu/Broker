@@ -14,6 +14,8 @@ public class Iconfig {
 
     //登录
     public static final String URL_LOGIN = URL + "operator/login.do";
+    //获取用户信息
+    public static final String URL_GET_USER_INFO = URL + "operator/queryOperatorInfoByToken.do";
 
 
 }
