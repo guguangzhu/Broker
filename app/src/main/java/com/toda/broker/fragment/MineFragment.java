@@ -1,5 +1,6 @@
 package com.toda.broker.fragment;
 
+import android.content.Intent;
 import android.os.Bundle;
 import android.view.LayoutInflater;
 import android.view.View;
@@ -7,8 +8,12 @@ import android.view.ViewGroup;
 import android.widget.ImageView;
 import android.widget.LinearLayout;
 import android.widget.TextView;
+import android.widget.Toast;
 
 import com.bumptech.glide.Glide;
+import com.lzy.imagepicker.ImagePicker;
+import com.lzy.imagepicker.bean.ImageItem;
+import com.lzy.imagepicker.ui.ImageGridActivity;
 import com.toda.broker.R;
 import com.toda.broker.bean.UserBean;
 import com.toda.broker.model.RequestParams;
@@ -18,6 +23,8 @@ import com.toda.broker.statics.Task;
 import com.toda.broker.util.HandlerRequestErr;
 import com.toda.broker.util.Iconfig;
 import com.toda.broker.view.ErrLayout;
+
+import java.util.ArrayList;
 
 import butterknife.BindView;
 import butterknife.ButterKnife;
@@ -31,6 +38,8 @@ import okhttp3.Call;
 
 public class MineFragment extends BaseFragment {
     UserBean userBean;
+    public static final int CHOOSE_PIC=111;
+
     @BindView(R.id.lv_logo)
     CircleImageView lvLogo;
     @BindView(R.id.ll_my_logo)
@@ -124,11 +133,28 @@ public class MineFragment extends BaseFragment {
     @OnClick({R.id.ll_my_logo, R.id.err_profile})
     public void onClick(View view) {
         switch (view.getId()) {
-            case R.id.ll_my_logo:
+            case R.id.ll_my_logo:{
+                ImagePicker.getInstance().setMultiMode(false);
+                Intent intent = new Intent(getContext(), ImageGridActivity.class);
+                startActivityForResult(intent, CHOOSE_PIC);
+            }
                 break;
             case R.id.err_profile:
                 getUserInfo();
                 break;
+        }
+    }
+
+
+    @Override
+    public void onActivityResult(int requestCode, int resultCode, Intent data) {
+        super.onActivityResult(requestCode, resultCode, data);
+        if (resultCode == ImagePicker.RESULT_CODE_ITEMS) {
+            if (data != null && requestCode == CHOOSE_PIC) {
+                ArrayList<ImageItem> images = (ArrayList<ImageItem>) data.getSerializableExtra(ImagePicker.EXTRA_RESULT_ITEMS);
+            } else {
+                Toast.makeText(getContext(), "没有数据", Toast.LENGTH_SHORT).show();
+            }
         }
     }
 }
