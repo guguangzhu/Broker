@@ -10,6 +10,7 @@ import android.widget.TextView;
 
 
 import com.toda.broker.R;
+import com.toda.broker.bean.SecondHouseListBean;
 import com.toda.broker.util.ImageUtils;
 
 import java.util.List;
@@ -25,10 +26,10 @@ import butterknife.ButterKnife;
 public class HouseListAdapter extends BaseAdapter {
 
     private Context mContext;
-    private List<String> list;
+    private List<SecondHouseListBean.ListBean> list;
     private LayoutInflater mInflater;
 
-    public HouseListAdapter(Context mContext, List<String> list) {
+    public HouseListAdapter(Context mContext, List<SecondHouseListBean.ListBean> list) {
         this.mContext = mContext;
         this.list = list;
         mInflater = (LayoutInflater) mContext.getSystemService(Context.LAYOUT_INFLATER_SERVICE);
@@ -60,10 +61,22 @@ public class HouseListAdapter extends BaseAdapter {
             mViewHolder = (ViewHolder) convertView.getTag();
         }
 //        ImageUtils.loadImage(mContext, mViewHolder.ivLogo, bean.getVirtualPicUrl());
+        SecondHouseListBean.ListBean bean=list.get(position);
         ImageUtils.loadImage( mViewHolder.ivLogo, "http://img1.imgtn.bdimg.com/it/u=2811846226,3534502207&fm=23&gp=0.jpg");
-//        mViewHolder.tvName.setText(bean.getBuildingName());
-//        mViewHolder.tvTotalMoney.setText(bean.getHouseMoney()+"万");
-//        mViewHolder.tvSize.setText(bean.getHouseArea() + "㎡  " + bean.getRoomType()+"室"+bean.getHallType()+"厅"+bean.getWashroomType()+"卫");
+        mViewHolder.tvName.setText(bean.getBuildingName());
+        mViewHolder.tvSize.setText(bean.getHouseArea()+"㎡  "+bean.getRoomType()+"室"+bean.getHallType()+"厅  "+bean.getDesignStandard());
+        mViewHolder.tvAddressPrice.setText(bean.getAreaName() + bean.getHouseAddress());
+        mViewHolder.tvPublisher.setText("发布人："+bean.getAreaName());
+        mViewHolder.tvTotalMoney.setText(bean.getAreaName()+"万");
+        if(bean.getIsChecked()==1){  //已核验
+            mViewHolder.btmAgent.setClickable(true);
+            mViewHolder.btmAgent.setBackgroundColor(mContext.getResources().getColor(R.color.main_color));
+            mViewHolder.btmAgent.setText("我要代理");
+        }else { //未核验
+            mViewHolder.btmAgent.setClickable(false);
+            mViewHolder.btmAgent.setBackgroundColor(mContext.getResources().getColor(R.color.red));
+            mViewHolder.btmAgent.setText("待核验");
+        }
 //        int unitPrice= bean.getHouseMoney()/bean.getHouseArea();
 //        mViewHolder.tvAddressPrice.setText(bean.getHouseAddress() + "  " + unitPrice + "/㎡");
 //        setLabel(mViewHolder, bean);
@@ -106,6 +119,10 @@ public class HouseListAdapter extends BaseAdapter {
         TextView label3;
         @BindView(R.id.tv_total_money)
         TextView tvTotalMoney;
+        @BindView(R.id.tv_publisher)
+        TextView tvPublisher;
+        @BindView(R.id.btn_agent)
+        TextView btmAgent;
 
         ViewHolder(View view) {
             ButterKnife.bind(this, view);

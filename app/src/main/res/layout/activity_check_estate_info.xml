@@ -1,0 +1,268 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:orientation="vertical">
+
+    <LinearLayout
+        android:id="@+id/ll_phone"
+        android:layout_width="match_parent"
+        android:layout_height="40dp"
+        android:background="@drawable/btn_white_btn_selector"
+        android:gravity="center_vertical"
+        android:orientation="horizontal"
+        android:paddingLeft="@dimen/common_horizontal_padding"
+        android:paddingRight="@dimen/common_horizontal_padding">
+
+        <TextView
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:layout_weight="1"
+            android:gravity="center_vertical"
+            style="@style/text_default"
+            android:textColor="@color/text_subtitle_color"
+            android:text="小区简介"/>
+
+        <TextView
+            style="@style/text_default"
+            android:id="@+id/tv_estate_description"
+            android:layout_width="180dp"
+            android:layout_height="wrap_content"/>
+
+        <ImageView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:src="@mipmap/ic_arrow_right"/>
+    </LinearLayout>
+    <View
+        android:layout_width="match_parent"
+        android:layout_height="1px"
+        android:background="@color/line_color"/>
+
+    <com.toda.broker.view.UnitDescriptionLayout
+        style="@style/unit_descr_layout"
+        android:background="@color/white">
+
+        <TextView
+            style="@style/house_descr_tv_left"
+            android:text="开发商"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content" />
+
+        <TextView
+            android:id="@+id/tv_developer"
+            style="@style/unit_descr_tv_right" />
+    </com.toda.broker.view.UnitDescriptionLayout>
+
+    <com.toda.broker.view.UnitDescriptionLayout
+        style="@style/unit_descr_layout"
+        android:background="@color/white">
+
+        <TextView
+            style="@style/house_descr_tv_left"
+            android:text="物业管理公司"
+            android:layout_width="match_parent" />
+
+        <TextView
+            android:id="@+id/tv_manager"
+            style="@style/unit_descr_tv_right" />
+    </com.toda.broker.view.UnitDescriptionLayout>
+
+    <com.toda.broker.view.UnitDescriptionLayout
+        style="@style/unit_descr_layout"
+        android:background="@color/white">
+
+        <TextView
+            style="@style/house_descr_tv_left"
+            android:text="楼盘名称"
+            android:layout_width="wrap_content" />
+
+        <TextView
+            android:id="@+id/tv_estate_name"
+            style="@style/unit_descr_tv_right" />
+    </com.toda.broker.view.UnitDescriptionLayout>
+
+    <com.toda.broker.view.UnitDescriptionLayout
+        style="@style/unit_descr_layout"
+        android:background="@color/white">
+
+        <TextView
+            style="@style/house_descr_tv_left"
+            android:text="均价"
+            android:layout_width="wrap_content" />
+
+        <TextView
+            android:id="@+id/tv_average_price"
+            style="@style/unit_descr_tv_right" />
+    </com.toda.broker.view.UnitDescriptionLayout>
+
+    <com.toda.broker.view.UnitDescriptionLayout
+        style="@style/unit_descr_layout"
+        android:background="@color/white">
+
+        <TextView
+            style="@style/house_descr_tv_left"
+            android:text="开盘时间" />
+
+        <TextView
+            android:id="@+id/tv_open_date"
+            style="@style/unit_descr_tv_right" />
+    </com.toda.broker.view.UnitDescriptionLayout>
+
+    <com.toda.broker.view.UnitDescriptionLayout
+        style="@style/unit_descr_layout"
+        android:background="@color/white">
+
+        <TextView
+            style="@style/house_descr_tv_left"
+            android:text="交房时间" />
+
+        <TextView
+            android:id="@+id/tv_give_date"
+            style="@style/unit_descr_tv_right" />
+    </com.toda.broker.view.UnitDescriptionLayout>
+
+    <com.toda.broker.view.UnitDescriptionLayout
+        style="@style/unit_descr_layout"
+        android:background="@color/white">
+
+        <TextView
+            style="@style/house_descr_tv_left"
+            android:text="装修标准" />
+
+        <TextView
+            android:id="@+id/tv_decorate_standard"
+            style="@style/unit_descr_tv_right" />
+    </com.toda.broker.view.UnitDescriptionLayout>
+
+    <com.toda.broker.view.UnitDescriptionLayout
+        style="@style/unit_descr_layout"
+        android:background="@color/white">
+
+        <TextView
+            style="@style/house_descr_tv_left"
+            android:text="建筑类型" />
+
+        <TextView
+            android:id="@+id/tv_construct_type"
+            style="@style/unit_descr_tv_right" />
+    </com.toda.broker.view.UnitDescriptionLayout>
+
+    <com.toda.broker.view.UnitDescriptionLayout
+        style="@style/unit_descr_layout"
+        android:background="@color/white">
+
+        <TextView
+            style="@style/house_descr_tv_left"
+            android:text="物业类型" />
+
+        <TextView
+            android:id="@+id/tv_manager_type"
+            style="@style/unit_descr_tv_right" />
+    </com.toda.broker.view.UnitDescriptionLayout>
+
+    <com.toda.broker.view.UnitDescriptionLayout
+        style="@style/unit_descr_layout"
+        android:background="@color/white">
+
+        <TextView
+            style="@style/house_descr_tv_left"
+            android:text="产权年限" />
+
+        <TextView
+            android:id="@+id/tv_estate_period"
+            style="@style/unit_descr_tv_right" />
+    </com.toda.broker.view.UnitDescriptionLayout>
+
+    <com.toda.broker.view.UnitDescriptionLayout
+        style="@style/unit_descr_layout"
+        android:background="@color/white">
+
+        <TextView
+            style="@style/house_descr_tv_left"
+            android:text="建筑面积" />
+
+        <TextView
+            android:id="@+id/tv_estate_area"
+            style="@style/unit_descr_tv_right" />
+    </com.toda.broker.view.UnitDescriptionLayout>
+
+    <com.toda.broker.view.UnitDescriptionLayout
+        style="@style/unit_descr_layout"
+        android:background="@color/white">
+
+        <TextView
+            style="@style/house_descr_tv_left"
+            android:text="占地面积" />
+
+        <TextView
+            android:id="@+id/tv_land_erea"
+            style="@style/unit_descr_tv_right" />
+    </com.toda.broker.view.UnitDescriptionLayout>
+
+    <com.toda.broker.view.UnitDescriptionLayout
+        style="@style/unit_descr_layout"
+        android:background="@color/white">
+
+        <TextView
+            style="@style/house_descr_tv_left"
+            android:text="绿化率" />
+
+        <TextView
+            android:id="@+id/tv_green_ratio"
+            style="@style/unit_descr_tv_right" />
+    </com.toda.broker.view.UnitDescriptionLayout>
+
+    <com.toda.broker.view.UnitDescriptionLayout
+        style="@style/unit_descr_layout"
+        android:background="@color/white">
+
+        <TextView
+            style="@style/house_descr_tv_left"
+            android:text="容积率" />
+
+        <TextView
+            android:id="@+id/tv_plot_ratio"
+            style="@style/unit_descr_tv_right" />
+    </com.toda.broker.view.UnitDescriptionLayout>
+
+    <com.toda.broker.view.UnitDescriptionLayout
+        style="@style/unit_descr_layout"
+        android:background="@color/white">
+
+        <TextView
+            style="@style/house_descr_tv_left"
+            android:text="物业费" />
+
+        <TextView
+            android:id="@+id/tv_manage_fee"
+            style="@style/unit_descr_tv_right" />
+    </com.toda.broker.view.UnitDescriptionLayout>
+
+    <com.toda.broker.view.UnitDescriptionLayout
+        style="@style/unit_descr_layout"
+        android:background="@color/white">
+
+        <TextView
+            style="@style/house_descr_tv_left"
+            android:text="车位数" />
+
+        <TextView
+            android:id="@+id/tv_park_amount"
+            style="@style/unit_descr_tv_right" />
+    </com.toda.broker.view.UnitDescriptionLayout>
+
+    <com.toda.broker.view.UnitDescriptionLayout
+        style="@style/unit_descr_layout"
+        android:background="@color/white">
+
+        <TextView
+            style="@style/house_descr_tv_left"
+            android:text="户数" />
+
+        <TextView
+            android:id="@+id/tv_park_amount"
+            style="@style/unit_descr_tv_right" />
+    </com.toda.broker.view.UnitDescriptionLayout>
+
+</LinearLayout>
