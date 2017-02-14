@@ -12,6 +12,7 @@ import android.widget.TextView;
 import com.toda.broker.R;
 import com.toda.broker.bean.SecondHouseListBean;
 import com.toda.broker.util.ImageUtils;
+import com.toda.broker.util.StringUtils;
 
 import java.util.List;
 
@@ -65,17 +66,20 @@ public class HouseListAdapter extends BaseAdapter {
         ImageUtils.loadImage( mViewHolder.ivLogo, "http://img1.imgtn.bdimg.com/it/u=2811846226,3534502207&fm=23&gp=0.jpg");
         mViewHolder.tvName.setText(bean.getBuildingName());
         mViewHolder.tvSize.setText(bean.getHouseArea()+"㎡  "+bean.getRoomType()+"室"+bean.getHallType()+"厅  "+bean.getDesignStandard());
-        mViewHolder.tvAddressPrice.setText(bean.getAreaName() + bean.getHouseAddress());
-        mViewHolder.tvPublisher.setText("发布人："+bean.getAreaName());
-        mViewHolder.tvTotalMoney.setText(bean.getAreaName()+"万");
+
+        mViewHolder.tvPublisher.setText("发布人："+bean.getRealname());
+        mViewHolder.tvTotalMoney.setText(bean.getHouseMoney()+"万");
         if(bean.getIsChecked()==1){  //已核验
             mViewHolder.btmAgent.setClickable(true);
             mViewHolder.btmAgent.setBackgroundColor(mContext.getResources().getColor(R.color.main_color));
             mViewHolder.btmAgent.setText("我要代理");
+            int perPrice=bean.getHouseMoney()/bean.getHouseArea();
+            mViewHolder.tvAddressPrice.setText(bean.getAreaName()+ " "+ bean.getHouseAddress()+" "+perPrice+"㎡");
         }else { //未核验
             mViewHolder.btmAgent.setClickable(false);
             mViewHolder.btmAgent.setBackgroundColor(mContext.getResources().getColor(R.color.red));
             mViewHolder.btmAgent.setText("待核验");
+            mViewHolder.tvAddressPrice.setText(bean.getAreaName()+ " "+ bean.getHouseAddress());
         }
 //        int unitPrice= bean.getHouseMoney()/bean.getHouseArea();
 //        mViewHolder.tvAddressPrice.setText(bean.getHouseAddress() + "  " + unitPrice + "/㎡");

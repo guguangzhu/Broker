@@ -85,6 +85,7 @@ public class UserUtils {
         setUserName("");
         setRealName("");
         setUserId("");
+        setImToken("");
         ShareData.setShareStringData(Ikeys.KEY_GESTURE_PATTERN, "");
     }
 

@@ -14,6 +14,7 @@ import com.bumptech.glide.Glide;
 import com.lzy.imagepicker.ImagePicker;
 import com.lzy.imagepicker.bean.ImageItem;
 import com.lzy.imagepicker.ui.ImageGridActivity;
+import com.toda.broker.LoginActivity;
 import com.toda.broker.R;
 import com.toda.broker.bean.UserBean;
 import com.toda.broker.model.RequestParams;
@@ -22,6 +23,7 @@ import com.toda.broker.statics.ErrorTips;
 import com.toda.broker.statics.Task;
 import com.toda.broker.util.HandlerRequestErr;
 import com.toda.broker.util.Iconfig;
+import com.toda.broker.util.UserUtils;
 import com.toda.broker.view.ErrLayout;
 
 import java.util.ArrayList;
@@ -130,7 +132,7 @@ public class MineFragment extends BaseFragment {
                 .into(lvLogo);
     }
 
-    @OnClick({R.id.ll_my_logo, R.id.err_profile})
+    @OnClick({R.id.ll_my_logo, R.id.err_profile,R.id.btn_sign_out})
     public void onClick(View view) {
         switch (view.getId()) {
             case R.id.ll_my_logo:{
@@ -141,6 +143,13 @@ public class MineFragment extends BaseFragment {
                 break;
             case R.id.err_profile:
                 getUserInfo();
+                break;
+            case R.id.btn_sign_out:{
+                UserUtils.loginOut(getActivity());
+                goPage(LoginActivity.class);
+                getActivity().finish();
+            }
+
                 break;
         }
     }

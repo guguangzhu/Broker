@@ -309,6 +309,16 @@
                 android:layout_marginTop="5dp"
                 android:background="@color/line_color"/>
 
+            <TextView
+                android:id="@+id/btn_sign_out"
+                android:padding="8dp"
+                android:layout_marginTop="20dp"
+                android:text="退出账户"
+                android:gravity="center"
+                android:textColor="@color/white"
+                android:background="@drawable/btn_red_btn_selector"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content" />
         </LinearLayout>
     </ScrollView>
 </com.toda.broker.view.ErrLayout>
