@@ -11,4 +11,6 @@ public class Task {
     public static final int USER_INFO=0x0002;
     /**获取用户信息**/
     public static final int SECOND_HOUSE_LIST=0x0003;
+    /**获取二手房初步信息**/
+    public static final int SECOND_HOUSE_PRELIMINARY_INFO=0x0004;
 }

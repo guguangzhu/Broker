@@ -218,6 +218,7 @@
         </com.toda.broker.view.UnitDescriptionLayout>
         <com.toda.broker.view.UnitDescriptionLayout
             style="@style/unit_descr_layout"
+            android:id="@+id/ll_toilet"
             android:background="@color/white">
 
             <TextView
@@ -254,6 +255,7 @@
                 android:id="@+id/tv_garden"
                 style="@style/unit_descr_tv_right" />
         </com.toda.broker.view.UnitDescriptionLayout>
+
         <com.toda.broker.view.UnitDescriptionLayout
             style="@style/unit_descr_layout"
             android:id="@+id/ll_area"
@@ -262,11 +264,19 @@
             <TextView
                 style="@style/house_descr_tv_left"
                 android:text="建筑面积" />
-
             <TextView
                 android:id="@+id/tv_area"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_centerVertical="true"
+                android:layout_marginRight="5dp"
+                android:layout_toLeftOf="@+id/tv_area_title" />
+            <TextView
+                android:id="@+id/tv_area_title"
+                android:text="㎡"
                 style="@style/unit_descr_tv_right" />
-        </com.toda.broker.view.UnitDescriptionLayout>'
+        </com.toda.broker.view.UnitDescriptionLayout>
+        '
         <com.toda.broker.view.UnitDescriptionLayout
             style="@style/unit_descr_layout"
             android:id="@+id/ll_inner_area"
@@ -275,9 +285,16 @@
             <TextView
                 style="@style/house_descr_tv_left"
                 android:text="套内面积" />
-
             <TextView
                 android:id="@+id/tv_inner_area"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_centerVertical="true"
+                android:layout_marginRight="5dp"
+                android:layout_toLeftOf="@+id/tv_inner_area_title" />
+            <TextView
+                android:text="㎡"
+                android:id="@+id/tv_inner_area_title"
                 style="@style/unit_descr_tv_right" />
         </com.toda.broker.view.UnitDescriptionLayout>
         <com.toda.broker.view.UnitDescriptionLayout
@@ -301,9 +318,16 @@
             <TextView
                 style="@style/house_descr_tv_left"
                 android:text="均价" />
-
             <TextView
                 android:id="@+id/tv_price"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_centerVertical="true"
+                android:layout_marginRight="5dp"
+                android:layout_toLeftOf="@+id/tv_price_title" />
+            <TextView
+                android:text="元/㎡"
+                android:id="@+id/tv_price_title"
                 style="@style/unit_descr_tv_right" />
         </com.toda.broker.view.UnitDescriptionLayout>
         <com.toda.broker.view.UnitDescriptionLayout
@@ -314,9 +338,16 @@
             <TextView
                 style="@style/house_descr_tv_left"
                 android:text="总价" />
-
             <TextView
                 android:id="@+id/tv_total_money"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_centerVertical="true"
+                android:layout_marginRight="5dp"
+                android:layout_toLeftOf="@+id/tv_total_money_title" />
+            <TextView
+                android:text="万元/套"
+                android:id="@+id/tv_total_money_title"
                 style="@style/unit_descr_tv_right" />
         </com.toda.broker.view.UnitDescriptionLayout>
         <com.toda.broker.view.UnitDescriptionLayout
@@ -352,7 +383,7 @@
 
             <TextView
                 style="@style/house_descr_tv_left"
-                android:text="楼盘名称" />
+                android:text="有无电梯" />
 
             <TextView
                 android:id="@+id/tv_has_elevator"

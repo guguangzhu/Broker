@@ -109,6 +109,17 @@
         <attr name="ptrDrawableBottom" format="reference" />
     </declare-styleable>
 
+
+    <!--CommonDialog使用 -->
+    <style name="customdialog" parent="@android:style/Theme.Dialog">
+        <item name="android:windowFrame">@null</item>
+        <item name="android:windowIsFloating">true</item>
+        <item name="android:windowIsTranslucent">true</item>
+        <item name="android:windowNoTitle">true</item>
+        <item name="android:windowBackground">@android:color/transparent</item>
+        <item name="android:backgroundDimEnabled">true</item>
+    </style>
+
     <style name="listview">
         <item name="android:cacheColorHint">#00000000</item>
         <item name="android:divider">@null</item>
@@ -153,5 +164,21 @@
         <item name="android:layout_alignParentRight">true</item>
         <item name="android:gravity">center</item>
         <item name="android:layout_marginRight">@dimen/common_horizontal_padding</item>
+    </style>
+
+    <!--横向线,试用imageview-->
+    <style name="LineHorizontalStyle">
+        <item name="android:layout_width">match_parent</item>
+        <item name="android:layout_height">wrap_content</item>
+        <item name="android:src">@drawable/bg_line</item>
+        <item name="android:scaleType">fitXY</item>
+    </style>
+
+    <!--竖线,適用imageview-->
+    <style name="LineVerticalStyle">
+        <item name="android:layout_width">wrap_content</item>
+        <item name="android:layout_height">match_parent</item>
+        <item name="android:src">@drawable/bg_line_vertical</item>
+        <item name="android:scaleType">fitXY</item>
     </style>
 </resources>

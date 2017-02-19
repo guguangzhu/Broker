@@ -8,6 +8,7 @@
     <color name="btn_white_clicked">#F0F0F0</color>
     <color name="background_color">#F0EFF5</color>
 
+    <color name="dialog_green">#3DAA8D</color>
     <color name="main_color">#00AAEE</color>
     <color name="text_title_color">#222222</color>
     <color name="text_subtitle_color">#666666</color>

@@ -70,7 +70,7 @@ public class SecondHouseListFragment extends BaseFragment implements AdapterView
         RequestParams params = new RequestParams(Iconfig.URL_SECOND_HOUSE_LIST);
         params.add("pageNum",pageNum+"");
         params.add("numPerPage",pageSize+"");
-        startRequest(Task.SECOND_HOUSE_LIST, params, SecondHouseListBean.class);
+        startRequest(Task.SECOND_HOUSE_LIST, params, SecondHouseListBean.class,false);
     }
 
     @Override
@@ -105,10 +105,13 @@ public class SecondHouseListFragment extends BaseFragment implements AdapterView
 
     @Override
     public void onItemClick(AdapterView<?> parent, View view, int position, long id) {
-        if(mList.get(position).getIsChecked()==1){  //已核验
+        SecondHouseListBean.ListBean bean=mList.get(position-lvList.getListView().getHeaderViewsCount());
+        Bundle bundle=new Bundle();
+        bundle.putString(KEY_HOUSE_ID,bean.getSecondHousePersonalId()+"");
+        if(bean.getIsChecked()==1){  //已核验
 
         }else { //待核验
-            goPage(HouseInfoActivity.class);
+            goPage(HouseInfoActivity.class,bundle);
         }
 
     }

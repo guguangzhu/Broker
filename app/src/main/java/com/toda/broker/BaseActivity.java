@@ -1,6 +1,7 @@
 package com.toda.broker;
 
 import android.app.Activity;
+import android.app.ProgressDialog;
 import android.content.Context;
 import android.content.Intent;
 import android.os.Bundle;
@@ -19,6 +20,7 @@ import com.toda.broker.util.Ikeys;
 import com.toda.broker.app.BrokerApplication;
 import com.toda.broker.model.ResponseListener;
 import com.toda.broker.model.ResultData;
+import com.toda.broker.util.StringUtils;
 import com.toda.broker.view.TopBar;
 
 import java.lang.reflect.Type;
@@ -292,4 +294,35 @@ public abstract class BaseActivity extends AppCompatActivity implements Response
     public boolean handlerRequestErr(ResultData data, boolean isTips) {
         return HandlerRequestErr.handlerRequestErr(this, data, isTips);
     }
+
+    /***
+     * string转boolean，1为true，其他为false
+     *
+     * @param str
+     * @return
+     */
+    public boolean string2Boolean(String str) {
+        return StringUtils.string2Boolean(str);
+    }
+
+    /***
+     * int转boolean，1为true，其他为false
+     *
+     * @param num
+     * @return
+     */
+    public boolean int2Boolean(int num) {
+        return StringUtils.int2Boolean(num);
+    }
+
+    /***
+     * string转int，
+     *
+     * @param str
+     * @return
+     */
+    public int string2Int(String str) {
+        return StringUtils.string2Integer(str);
+    }
+
 }

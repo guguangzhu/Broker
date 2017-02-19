@@ -18,6 +18,8 @@ public class Iconfig {
     public static final String URL_GET_USER_INFO = URL + "operator/queryOperatorInfoByToken.do";
     //二手房源
     public static final String URL_SECOND_HOUSE_LIST = URL + "secondHousePersonal/queryAllSecondHousePersonalPage.do";
+    //二手房源初步资料
+    public static final String URL_SECOND_HOUSE_PRELIMINARY_INFO = URL + "secondHousePersonal/querySecondHousePersonalInfo.do";
 
 
 }
