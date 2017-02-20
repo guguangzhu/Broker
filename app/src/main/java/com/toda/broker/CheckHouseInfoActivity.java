@@ -1,13 +1,19 @@
 package com.toda.broker;
 
+import android.content.Intent;
 import android.os.Bundle;
 import android.view.View;
 import android.widget.LinearLayout;
 import android.widget.TextView;
 
+import com.lzy.imagepicker.ImagePicker;
+import com.lzy.imagepicker.bean.ImageItem;
+import com.lzy.imagepicker.ui.ImageGridActivity;
 import com.toda.broker.view.UnitDescriptionLayout;
 import com.toda.broker.view.dialog.CommonInputDialog;
+import com.toda.broker.view.dialog.CommonInputNumDialog;
 import com.toda.broker.view.dialog.CommonSelectDialog;
+import com.toda.broker.view.dialog.FloorNumDialog;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -25,8 +31,8 @@ public class CheckHouseInfoActivity extends BaseActivity {
 
     @BindView(R.id.tv_phone)
     TextView tvPhone;
-    @BindView(R.id.ll_phone)
-    LinearLayout llPhone;
+    @BindView(R.id.ll_photo)
+    LinearLayout llPhoto;
     @BindView(R.id.tv_title)
     TextView tvTitle;
     @BindView(R.id.ll_title)
@@ -108,6 +114,12 @@ public class CheckHouseInfoActivity extends BaseActivity {
     @BindView(R.id.ll_orientation)
     UnitDescriptionLayout llOrientation;
 
+    public static final int REQUEST_CITY=111;
+    public static final int CHOOSE_PIC=112;
+    String cityName,cityId,provinceName,provinceId,regionId,regionName;
+
+    String floorNum,totalFloorNum;
+
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -119,21 +131,32 @@ public class CheckHouseInfoActivity extends BaseActivity {
     @Override
     public void initView() {
         setTitle("户型资料");
+        setTopBarRightText("完成");
     }
 
-    @OnClick({R.id.ll_phone, R.id.ll_title, R.id.ll_address, R.id.ll_landmark, R.id.ll_profile, R.id.ll_type, R.id.ll_bedroom, R.id.ll_hall, R.id.ll_kitchen, R.id.ll_balcony, R.id.ll_garden,
+    @Override
+    public void onTopRightClick() {
+        super.onTopRightClick();
+        toast("完成");
+    }
+
+    @OnClick({R.id.ll_photo, R.id.ll_title, R.id.ll_address, R.id.ll_landmark, R.id.ll_profile, R.id.ll_type, R.id.ll_bedroom, R.id.ll_hall, R.id.ll_kitchen, R.id.ll_balcony, R.id.ll_garden,
             R.id.ll_area, R.id.ll_inner_area, R.id.ll_floor, R.id.ll_price, R.id.ll_total_price, R.id.ll_standard, R.id.ll_period, R.id.ll_has_elevator, R.id.ll_orientation,R.id.ll_toilet})
     public void onClick(View view) {
         switch (view.getId()) {
-            case R.id.ll_phone:
+            case R.id.ll_photo:
+                showPicture();
                 break;
             case R.id.ll_title:
+                showTitle();
                 break;
             case R.id.ll_address:
+                goPage(CommonSelectCityActivity.class,null,REQUEST_CITY);
                 break;
             case R.id.ll_landmark:
                 break;
             case R.id.ll_profile:
+                showDescription();
                 break;
             case R.id.ll_type:
                 showType();
@@ -163,6 +186,7 @@ public class CheckHouseInfoActivity extends BaseActivity {
                 showInnerAreaDialog();
                 break;
             case R.id.ll_floor:
+                showFloor();
                 break;
             case R.id.ll_price:
                 showAveragePriceDialog();
@@ -181,6 +205,31 @@ public class CheckHouseInfoActivity extends BaseActivity {
                 break;
             case R.id.ll_orientation:
                 showOrientation();
+                break;
+        }
+    }
+
+    @Override
+    protected void onActivityResult(int requestCode, int resultCode, Intent data) {
+        super.onActivityResult(requestCode, resultCode, data);
+        switch (requestCode){
+            case REQUEST_CITY:
+                if(resultCode==RESULT_OK){
+//                    String city=data.getStringExtra(KEY_DATA);
+//                    tvCity.setText(city);
+                    this.cityId=data.getStringExtra(CommonSelectCityActivity.KEY_CITY_ID);
+                    this.cityName=data.getStringExtra(CommonSelectCityActivity.KEY_CITY_NAME);
+                    this.provinceId=data.getStringExtra(CommonSelectCityActivity.KEY_PROVINCE_ID);
+                    this.provinceName=data.getStringExtra(CommonSelectCityActivity.KEY_PROVINCE_NAME);
+                    regionId=data.getStringExtra(CommonSelectCityActivity.KEY_REGION_ID);
+                    regionName=data.getStringExtra(CommonSelectCityActivity.KEY_REGION_NAME);
+                    tvAddress.setText(provinceName+" "+cityName+" "+regionName);
+                }
+                break;
+            case CHOOSE_PIC:
+                if (resultCode == ImagePicker.RESULT_CODE_ITEMS&&data!=null){
+                    ArrayList<ImageItem> images = (ArrayList<ImageItem>) data.getSerializableExtra(ImagePicker.EXTRA_RESULT_ITEMS);
+                }
                 break;
         }
     }
@@ -387,7 +436,7 @@ public class CheckHouseInfoActivity extends BaseActivity {
      * 建筑面积
      */
     private void showAreaDialog(){
-        CommonInputDialog dialog=new CommonInputDialog(this, "㎡", new CommonInputDialog.OnConfirmListener() {
+        CommonInputNumDialog dialog=new CommonInputNumDialog(this, "㎡", new CommonInputNumDialog.OnConfirmListener() {
             @Override
             public void onConfirm(String selectedString) {
                 tvArea.setText(selectedString);
@@ -400,7 +449,7 @@ public class CheckHouseInfoActivity extends BaseActivity {
      * 套内面积
      */
     private void showInnerAreaDialog(){
-        CommonInputDialog dialog=new CommonInputDialog(this, "㎡", new CommonInputDialog.OnConfirmListener() {
+        CommonInputNumDialog dialog=new CommonInputNumDialog(this, "㎡", new CommonInputNumDialog.OnConfirmListener() {
             @Override
             public void onConfirm(String selectedString) {
                 tvInnerArea.setText(selectedString);
@@ -413,7 +462,7 @@ public class CheckHouseInfoActivity extends BaseActivity {
      * 均价
      */
     private void showAveragePriceDialog(){
-        CommonInputDialog dialog=new CommonInputDialog(this, "元/㎡", new CommonInputDialog.OnConfirmListener() {
+        CommonInputNumDialog dialog=new CommonInputNumDialog(this, "元/㎡", new CommonInputNumDialog.OnConfirmListener() {
             @Override
             public void onConfirm(String selectedString) {
                 tvPrice.setText(selectedString);
@@ -426,12 +475,62 @@ public class CheckHouseInfoActivity extends BaseActivity {
      * 总价
      */
     private void showTotalPriceDialog(){
-        CommonInputDialog dialog=new CommonInputDialog(this, "万元/套", new CommonInputDialog.OnConfirmListener() {
+        CommonInputNumDialog dialog=new CommonInputNumDialog(this, "万元/套", new CommonInputNumDialog.OnConfirmListener() {
             @Override
             public void onConfirm(String selectedString) {
                 tvTotalMoney.setText(selectedString);
             }
         });
         dialog.show();
+    }
+
+
+    /**
+     * 标题
+     */
+    private void showTitle(){
+        CommonInputDialog dialog=new CommonInputDialog(this, "请输入标题", new CommonInputDialog.OnConfirmListener() {
+            @Override
+            public void onConfirm(String selectedString) {
+                tvTitle.setText(selectedString);
+            }
+        });
+        dialog.show();
+    }
+
+
+    /**
+     * 房源介绍
+     */
+    private void showDescription(){
+        CommonInputDialog dialog=new CommonInputDialog(this, "请输入房源介绍", new CommonInputDialog.OnConfirmListener() {
+            @Override
+            public void onConfirm(String selectedString) {
+                tvProfile.setText(selectedString);
+            }
+        });
+        dialog.show();
+    }
+
+    /**
+     * 房源介绍
+     */
+    private void showFloor(){
+        FloorNumDialog dialog=new FloorNumDialog(this, new FloorNumDialog.OnConfirmListener() {
+            @Override
+            public void onConfirm(String floor, String totalFloor) {
+                floorNum=floor;
+                totalFloorNum=totalFloor;
+                tvFloor.setText(floor+"/"+totalFloor);
+            }
+
+        });
+        dialog.show();
+    }
+
+    private void showPicture(){
+        ImagePicker.getInstance().setMultiMode(true);
+        Intent intent = new Intent(this, ImageGridActivity.class);
+        startActivityForResult(intent, CHOOSE_PIC);
     }
 }

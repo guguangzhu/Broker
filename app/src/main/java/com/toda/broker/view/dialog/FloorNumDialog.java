@@ -18,20 +18,23 @@ import butterknife.ButterKnife;
 import butterknife.OnClick;
 
 
-public class CommonInputDialog extends Dialog {
-    @BindView(R.id.et_content)
-    EditText etContent;
+public class FloorNumDialog extends Dialog {
+
     @BindView(R.id.btn_confirm)
     Button btnConfirm;
+    @BindView(R.id.et_floor)
+    EditText etFloor;
+    @BindView(R.id.et_total_floor)
+    EditText etTotalFloor;
+    @BindView(R.id.tv_unit)
+    TextView tvUnit;
     private View contentView;
-    String unit;
     OnConfirmListener listener;
 
-    public CommonInputDialog(Context context, String unit, OnConfirmListener listener) {
+    public FloorNumDialog(Context context, OnConfirmListener listener) {
         super(context, R.style.customdialog);
         this.listener = listener;
-        contentView = getLayoutInflater().inflate(R.layout.dialog_input_content, null);
-        this.unit = unit;
+        contentView = getLayoutInflater().inflate(R.layout.dialog_input_floor, null);
         setContentView(contentView);
         ButterKnife.bind(this, contentView);
         initView();
@@ -45,25 +48,29 @@ public class CommonInputDialog extends Dialog {
     }
 
     private void initView() {
-        etContent.setHint(unit);
     }
 
     @OnClick(R.id.btn_confirm)
     public void onClick() {
-        String content=etContent.getText().toString();
-        if(StringUtils.isEmpty(content)){
-            Toast.makeText(getContext(),"请输入内容",Toast.LENGTH_SHORT).show();
+        String floor = etFloor.getText().toString();
+        String totalFloor = etTotalFloor.getText().toString();
+        if (StringUtils.isEmpty(floor)) {
+            Toast.makeText(getContext(), "请输入楼层", Toast.LENGTH_SHORT).show();
             return;
         }
-        if(listener!=null){
-            listener.onConfirm(content);
+        if (StringUtils.isEmpty(totalFloor)) {
+            Toast.makeText(getContext(), "请输入楼层", Toast.LENGTH_SHORT).show();
+            return;
+        }
+        if (listener != null) {
+            listener.onConfirm(floor,totalFloor);
             dismiss();
         }
     }
 
 
     public interface OnConfirmListener {
-        void onConfirm(String selectedString);
+        void onConfirm(String floor,String totalFloor);
     }
 
 }

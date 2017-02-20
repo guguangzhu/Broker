@@ -20,6 +20,9 @@ public class Iconfig {
     public static final String URL_SECOND_HOUSE_LIST = URL + "secondHousePersonal/queryAllSecondHousePersonalPage.do";
     //二手房源初步资料
     public static final String URL_SECOND_HOUSE_PRELIMINARY_INFO = URL + "secondHousePersonal/querySecondHousePersonalInfo.do";
-
+    //获取城市列表
+    public static final String URL_GET_CITY_LIST = URL + "area/queryAreaList.do";
+    //获取区域列表
+    public static final String URL_GET_RETION_BY_CITY = URL + "area/queryAreaListByCityId.do";
 
 }

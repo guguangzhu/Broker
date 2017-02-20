@@ -9,7 +9,7 @@
         android:orientation="vertical">
 
         <LinearLayout
-            android:id="@+id/ll_phone"
+            android:id="@+id/ll_photo"
             android:layout_width="match_parent"
             android:layout_height="40dp"
             android:background="@drawable/btn_white_btn_selector"
@@ -85,7 +85,8 @@
                 android:layout_height="wrap_content"
                 android:layout_weight="1"
                 android:gravity="center_vertical"
-                android:text="地址"/>
+                android:text="地址"
+                android:id="@+id/textView3" />
 
             <TextView
                 android:id="@+id/tv_address"
@@ -116,7 +117,8 @@
                 android:layout_height="wrap_content"
                 android:layout_weight="1"
                 android:gravity="center_vertical"
-                android:text="地标"/>
+                android:text="地标"
+                android:id="@+id/textView" />
 
             <TextView
                 android:id="@+id/tv_landmark"

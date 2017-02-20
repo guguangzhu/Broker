@@ -36,6 +36,10 @@
         <activity android:name=".CheckHouseInfoActivity" android:screenOrientation="portrait"/>
         <!--核验周边配套-->
         <activity android:name=".CheckSurroundingActivity" android:screenOrientation="portrait"/>
+        <!--选择城市-->
+        <activity android:name=".CommonSelectCityActivity" android:screenOrientation="portrait"/>
+        <!--选择区域-->
+        <activity android:name=".ChooseRegionActivity" android:screenOrientation="portrait"/>
         <!--聊天-->
         <activity android:name=".ChatActivity" android:screenOrientation="portrait"
             android:windowSoftInputMode="stateHidden|adjustResize">

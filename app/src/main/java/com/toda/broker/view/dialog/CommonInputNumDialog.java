@@ -18,19 +18,21 @@ import butterknife.ButterKnife;
 import butterknife.OnClick;
 
 
-public class CommonInputDialog extends Dialog {
+public class CommonInputNumDialog extends Dialog {
     @BindView(R.id.et_content)
     EditText etContent;
+    @BindView(R.id.tv_unit)
+    TextView tvUnit;
     @BindView(R.id.btn_confirm)
     Button btnConfirm;
     private View contentView;
     String unit;
     OnConfirmListener listener;
 
-    public CommonInputDialog(Context context, String unit, OnConfirmListener listener) {
+    public CommonInputNumDialog(Context context, String unit, OnConfirmListener listener) {
         super(context, R.style.customdialog);
         this.listener = listener;
-        contentView = getLayoutInflater().inflate(R.layout.dialog_input_content, null);
+        contentView = getLayoutInflater().inflate(R.layout.dialog_input_floor, null);
         this.unit = unit;
         setContentView(contentView);
         ButterKnife.bind(this, contentView);
@@ -45,7 +47,7 @@ public class CommonInputDialog extends Dialog {
     }
 
     private void initView() {
-        etContent.setHint(unit);
+        tvUnit.setText(unit);
     }
 
     @OnClick(R.id.btn_confirm)
