@@ -71,6 +71,37 @@
             android:layout_height="1dp"
             android:background="@color/line_color"/>
         <LinearLayout
+            android:id="@+id/ll_region"
+            android:layout_width="match_parent"
+            android:layout_height="40dp"
+            android:background="@drawable/btn_white_btn_selector"
+            android:gravity="center_vertical"
+            android:orientation="horizontal"
+            android:paddingLeft="@dimen/common_horizontal_padding"
+            android:paddingRight="@dimen/common_horizontal_padding">
+
+            <TextView
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                android:layout_weight="1"
+                android:gravity="center_vertical"
+                android:text="区域" />
+
+            <TextView
+                android:id="@+id/tv_region"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"/>
+
+            <ImageView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:src="@mipmap/ic_arrow_right"/>
+        </LinearLayout>
+        <View
+            android:layout_width="match_parent"
+            android:layout_height="1dp"
+            android:background="@color/line_color"/>
+        <LinearLayout
             android:id="@+id/ll_address"
             android:layout_width="match_parent"
             android:layout_height="40dp"
@@ -85,8 +116,7 @@
                 android:layout_height="wrap_content"
                 android:layout_weight="1"
                 android:gravity="center_vertical"
-                android:text="地址"
-                android:id="@+id/textView3" />
+                android:text="地址" />
 
             <TextView
                 android:id="@+id/tv_address"
@@ -117,8 +147,7 @@
                 android:layout_height="wrap_content"
                 android:layout_weight="1"
                 android:gravity="center_vertical"
-                android:text="地标"
-                android:id="@+id/textView" />
+                android:text="地标" />
 
             <TextView
                 android:id="@+id/tv_landmark"
@@ -402,6 +431,20 @@
 
             <TextView
                 android:id="@+id/tv_orientation"
+                style="@style/unit_descr_tv_right" />
+        </com.toda.broker.view.UnitDescriptionLayout>
+
+        <com.toda.broker.view.UnitDescriptionLayout
+            style="@style/unit_descr_layout"
+            android:id="@+id/ll_feature"
+            android:background="@color/white">
+
+            <TextView
+                style="@style/house_descr_tv_left"
+                android:text="房源特点" />
+
+            <TextView
+                android:id="@+id/tv_feature"
                 style="@style/unit_descr_tv_right" />
         </com.toda.broker.view.UnitDescriptionLayout>
     </LinearLayout>

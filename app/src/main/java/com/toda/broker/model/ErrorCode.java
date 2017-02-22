@@ -34,7 +34,7 @@ public class ErrorCode {
 	/**SESSION清除 **/
 	public static final String SESSION_CLEAR ="a30-100004";
 	/**SESSION错误 **/
-	public static final String SESSION_ERR ="a30-100006";
+	public static final String SESSION_ERR ="-9";
 	/**强制下线 **/
 	public static final String ERROR_FORCE_LOG_OUT="405";
 

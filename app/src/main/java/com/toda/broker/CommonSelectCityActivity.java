@@ -100,7 +100,6 @@ public class CommonSelectCityActivity extends BaseActivity {
 
                 intent.putExtra(KEY_CITY_ID,cityId);
                 intent.putExtra(KEY_CITY_NAME,city);
-                startActivity(intent);
                 startActivityForResult(intent,REQUEST_REGION);
                 return false;
             }

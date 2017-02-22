@@ -13,6 +13,7 @@ import com.toda.broker.view.UnitDescriptionLayout;
 import com.toda.broker.view.dialog.CommonInputDialog;
 import com.toda.broker.view.dialog.CommonInputNumDialog;
 import com.toda.broker.view.dialog.CommonSelectDialog;
+import com.toda.broker.view.dialog.CommonTagDialog;
 import com.toda.broker.view.dialog.FloorNumDialog;
 
 import java.util.ArrayList;
@@ -114,11 +115,27 @@ public class CheckHouseInfoActivity extends BaseActivity {
     @BindView(R.id.ll_orientation)
     UnitDescriptionLayout llOrientation;
 
-    public static final int REQUEST_CITY=111;
-    public static final int CHOOSE_PIC=112;
-    String cityName,cityId,provinceName,provinceId,regionId,regionName;
+    public static final int REQUEST_CITY = 111;
+    public static final int CHOOSE_PIC = 112;
+    String cityName, cityId, provinceName, provinceId, regionId, regionName;
 
-    String floorNum,totalFloorNum;
+    String floorNum, totalFloorNum;
+    @BindView(R.id.tv_area_title)
+    TextView tvAreaTitle;
+    @BindView(R.id.tv_inner_area_title)
+    TextView tvInnerAreaTitle;
+    @BindView(R.id.tv_price_title)
+    TextView tvPriceTitle;
+    @BindView(R.id.tv_total_money_title)
+    TextView tvTotalMoneyTitle;
+    @BindView(R.id.tv_feature)
+    TextView tvFeature;
+    @BindView(R.id.ll_feature)
+    UnitDescriptionLayout llFeature;
+    @BindView(R.id.tv_region)
+    TextView tvRegion;
+    @BindView(R.id.ll_region)
+    LinearLayout llRegion;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -140,8 +157,9 @@ public class CheckHouseInfoActivity extends BaseActivity {
         toast("完成");
     }
 
-    @OnClick({R.id.ll_photo, R.id.ll_title, R.id.ll_address, R.id.ll_landmark, R.id.ll_profile, R.id.ll_type, R.id.ll_bedroom, R.id.ll_hall, R.id.ll_kitchen, R.id.ll_balcony, R.id.ll_garden,
-            R.id.ll_area, R.id.ll_inner_area, R.id.ll_floor, R.id.ll_price, R.id.ll_total_price, R.id.ll_standard, R.id.ll_period, R.id.ll_has_elevator, R.id.ll_orientation,R.id.ll_toilet})
+
+    @OnClick({R.id.ll_photo, R.id.ll_title,R.id.ll_region, R.id.ll_address, R.id.ll_landmark, R.id.ll_profile, R.id.ll_type, R.id.ll_bedroom, R.id.ll_hall, R.id.ll_kitchen, R.id.ll_balcony, R.id.ll_garden,
+            R.id.ll_area, R.id.ll_inner_area, R.id.ll_floor, R.id.ll_price, R.id.ll_total_price, R.id.ll_standard, R.id.ll_period, R.id.ll_has_elevator, R.id.ll_orientation, R.id.ll_toilet, R.id.ll_feature})
     public void onClick(View view) {
         switch (view.getId()) {
             case R.id.ll_photo:
@@ -150,8 +168,11 @@ public class CheckHouseInfoActivity extends BaseActivity {
             case R.id.ll_title:
                 showTitle();
                 break;
+            case R.id.ll_region:
+                goPage(CommonSelectCityActivity.class, null, REQUEST_CITY);
+                break;
             case R.id.ll_address:
-                goPage(CommonSelectCityActivity.class,null,REQUEST_CITY);
+                showAddress();
                 break;
             case R.id.ll_landmark:
                 break;
@@ -206,28 +227,31 @@ public class CheckHouseInfoActivity extends BaseActivity {
             case R.id.ll_orientation:
                 showOrientation();
                 break;
+            case R.id.ll_feature:
+                showFeature();
+                break;
         }
     }
 
     @Override
     protected void onActivityResult(int requestCode, int resultCode, Intent data) {
         super.onActivityResult(requestCode, resultCode, data);
-        switch (requestCode){
+        switch (requestCode) {
             case REQUEST_CITY:
-                if(resultCode==RESULT_OK){
+                if (resultCode == RESULT_OK) {
 //                    String city=data.getStringExtra(KEY_DATA);
 //                    tvCity.setText(city);
-                    this.cityId=data.getStringExtra(CommonSelectCityActivity.KEY_CITY_ID);
-                    this.cityName=data.getStringExtra(CommonSelectCityActivity.KEY_CITY_NAME);
-                    this.provinceId=data.getStringExtra(CommonSelectCityActivity.KEY_PROVINCE_ID);
-                    this.provinceName=data.getStringExtra(CommonSelectCityActivity.KEY_PROVINCE_NAME);
-                    regionId=data.getStringExtra(CommonSelectCityActivity.KEY_REGION_ID);
-                    regionName=data.getStringExtra(CommonSelectCityActivity.KEY_REGION_NAME);
-                    tvAddress.setText(provinceName+" "+cityName+" "+regionName);
+                    this.cityId = data.getStringExtra(CommonSelectCityActivity.KEY_CITY_ID);
+                    this.cityName = data.getStringExtra(CommonSelectCityActivity.KEY_CITY_NAME);
+                    this.provinceId = data.getStringExtra(CommonSelectCityActivity.KEY_PROVINCE_ID);
+                    this.provinceName = data.getStringExtra(CommonSelectCityActivity.KEY_PROVINCE_NAME);
+                    regionId = data.getStringExtra(CommonSelectCityActivity.KEY_REGION_ID);
+                    regionName = data.getStringExtra(CommonSelectCityActivity.KEY_REGION_NAME);
+                    tvRegion.setText(provinceName + " " + cityName + " " + regionName);
                 }
                 break;
             case CHOOSE_PIC:
-                if (resultCode == ImagePicker.RESULT_CODE_ITEMS&&data!=null){
+                if (resultCode == ImagePicker.RESULT_CODE_ITEMS && data != null) {
                     ArrayList<ImageItem> images = (ArrayList<ImageItem>) data.getSerializableExtra(ImagePicker.EXTRA_RESULT_ITEMS);
                 }
                 break;
@@ -251,6 +275,7 @@ public class CheckHouseInfoActivity extends BaseActivity {
         });
         orientationDialog.show();
     }
+
     /**
      * 室
      */
@@ -323,6 +348,7 @@ public class CheckHouseInfoActivity extends BaseActivity {
         });
         orientationDialog.show();
     }
+
     /**
      * 阳台
      */
@@ -360,6 +386,7 @@ public class CheckHouseInfoActivity extends BaseActivity {
         });
         orientationDialog.show();
     }
+
     /**
      * 朝向
      */
@@ -435,8 +462,8 @@ public class CheckHouseInfoActivity extends BaseActivity {
     /**
      * 建筑面积
      */
-    private void showAreaDialog(){
-        CommonInputNumDialog dialog=new CommonInputNumDialog(this, "㎡", new CommonInputNumDialog.OnConfirmListener() {
+    private void showAreaDialog() {
+        CommonInputNumDialog dialog = new CommonInputNumDialog(this, "㎡", new CommonInputNumDialog.OnConfirmListener() {
             @Override
             public void onConfirm(String selectedString) {
                 tvArea.setText(selectedString);
@@ -448,8 +475,8 @@ public class CheckHouseInfoActivity extends BaseActivity {
     /**
      * 套内面积
      */
-    private void showInnerAreaDialog(){
-        CommonInputNumDialog dialog=new CommonInputNumDialog(this, "㎡", new CommonInputNumDialog.OnConfirmListener() {
+    private void showInnerAreaDialog() {
+        CommonInputNumDialog dialog = new CommonInputNumDialog(this, "㎡", new CommonInputNumDialog.OnConfirmListener() {
             @Override
             public void onConfirm(String selectedString) {
                 tvInnerArea.setText(selectedString);
@@ -461,8 +488,8 @@ public class CheckHouseInfoActivity extends BaseActivity {
     /**
      * 均价
      */
-    private void showAveragePriceDialog(){
-        CommonInputNumDialog dialog=new CommonInputNumDialog(this, "元/㎡", new CommonInputNumDialog.OnConfirmListener() {
+    private void showAveragePriceDialog() {
+        CommonInputNumDialog dialog = new CommonInputNumDialog(this, "元/㎡", new CommonInputNumDialog.OnConfirmListener() {
             @Override
             public void onConfirm(String selectedString) {
                 tvPrice.setText(selectedString);
@@ -474,8 +501,8 @@ public class CheckHouseInfoActivity extends BaseActivity {
     /**
      * 总价
      */
-    private void showTotalPriceDialog(){
-        CommonInputNumDialog dialog=new CommonInputNumDialog(this, "万元/套", new CommonInputNumDialog.OnConfirmListener() {
+    private void showTotalPriceDialog() {
+        CommonInputNumDialog dialog = new CommonInputNumDialog(this, "万元/套", new CommonInputNumDialog.OnConfirmListener() {
             @Override
             public void onConfirm(String selectedString) {
                 tvTotalMoney.setText(selectedString);
@@ -488,8 +515,8 @@ public class CheckHouseInfoActivity extends BaseActivity {
     /**
      * 标题
      */
-    private void showTitle(){
-        CommonInputDialog dialog=new CommonInputDialog(this, "请输入标题", new CommonInputDialog.OnConfirmListener() {
+    private void showTitle() {
+        CommonInputDialog dialog = new CommonInputDialog(this, "请输入标题", new CommonInputDialog.OnConfirmListener() {
             @Override
             public void onConfirm(String selectedString) {
                 tvTitle.setText(selectedString);
@@ -502,8 +529,8 @@ public class CheckHouseInfoActivity extends BaseActivity {
     /**
      * 房源介绍
      */
-    private void showDescription(){
-        CommonInputDialog dialog=new CommonInputDialog(this, "请输入房源介绍", new CommonInputDialog.OnConfirmListener() {
+    private void showDescription() {
+        CommonInputDialog dialog = new CommonInputDialog(this, "请输入房源介绍", new CommonInputDialog.OnConfirmListener() {
             @Override
             public void onConfirm(String selectedString) {
                 tvProfile.setText(selectedString);
@@ -512,23 +539,63 @@ public class CheckHouseInfoActivity extends BaseActivity {
         dialog.show();
     }
 
+
     /**
-     * 房源介绍
+     * 地址
      */
-    private void showFloor(){
-        FloorNumDialog dialog=new FloorNumDialog(this, new FloorNumDialog.OnConfirmListener() {
+    private void showAddress() {
+        CommonInputDialog dialog = new CommonInputDialog(this, "请输入房源地址", new CommonInputDialog.OnConfirmListener() {
+            @Override
+            public void onConfirm(String selectedString) {
+                tvAddress.setText(selectedString);
+            }
+        });
+        dialog.show();
+    }
+
+    /**
+     * 楼层
+     */
+    private void showFloor() {
+        FloorNumDialog dialog = new FloorNumDialog(this, new FloorNumDialog.OnConfirmListener() {
             @Override
             public void onConfirm(String floor, String totalFloor) {
-                floorNum=floor;
-                totalFloorNum=totalFloor;
-                tvFloor.setText(floor+"/"+totalFloor);
+                floorNum = floor;
+                totalFloorNum = totalFloor;
+                tvFloor.setText(floor + "/" + totalFloor);
             }
 
         });
         dialog.show();
     }
 
-    private void showPicture(){
+    /**
+     * 房源特点
+     */
+    private void showFeature() {
+        /**
+         * 地铁房、学区房、满二、满五、精装修、毛坯、户型好、地段好、江景房
+         */
+        final List<String> list = new ArrayList<>();
+        list.add("地铁房");
+        list.add("学区房");
+        list.add("满二");
+        list.add("满五");
+        list.add("精装修");
+        list.add("毛坯");
+        list.add("户型好");
+        list.add("地段好");
+        list.add("江景房");
+        CommonTagDialog dialog = new CommonTagDialog(this, list, new CommonTagDialog.OnConfirmListener() {
+            @Override
+            public void onConfirm(List<String> list) {
+
+            }
+        });
+        dialog.show();
+    }
+
+    private void showPicture() {
         ImagePicker.getInstance().setMultiMode(true);
         Intent intent = new Intent(this, ImageGridActivity.class);
         startActivityForResult(intent, CHOOSE_PIC);

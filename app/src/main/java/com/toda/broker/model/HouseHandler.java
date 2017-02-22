@@ -9,6 +9,7 @@ import android.text.TextUtils;
 
 
 import com.toda.broker.util.GsonUtil;
+import com.toda.broker.util.HouseUtil;
 import com.toda.broker.util.LogUtils;
 import com.toda.broker.util.StringUtils;
 import com.toda.broker.util.crypt.AESCrypt;
@@ -156,8 +157,7 @@ public class HouseHandler extends BaseHandler implements Callback {
         handler.post(new Runnable() {
             @Override
             public void run() {
-//                SPIUtils.showLoginErrDialog(context);
-                // TODO: 2016/9/20   对话框
+                HouseUtil.showLoginErrDialog(context);
             }
         });
 

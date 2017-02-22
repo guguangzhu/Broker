@@ -15,6 +15,7 @@ import android.widget.Toast;
 
 import com.toda.broker.model.HouseHandler;
 import com.toda.broker.model.RequestParams;
+import com.toda.broker.util.ActivityManagerTool;
 import com.toda.broker.util.HandlerRequestErr;
 import com.toda.broker.util.Ikeys;
 import com.toda.broker.app.BrokerApplication;
@@ -44,6 +45,7 @@ public abstract class BaseActivity extends AppCompatActivity implements Response
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         mContext=this;
+        ActivityManagerTool.getInstance().addActivity(this);
         app= (BrokerApplication) getApplication();
         setParentView(R.layout.activity_base);
     }
