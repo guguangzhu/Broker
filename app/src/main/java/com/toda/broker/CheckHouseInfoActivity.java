@@ -117,8 +117,8 @@ public class CheckHouseInfoActivity extends BaseActivity {
 
     public static final int REQUEST_CITY = 111;
     public static final int CHOOSE_PIC = 112;
-    String cityName, cityId, provinceName, provinceId, regionId, regionName;
-
+    String cityName, cityId, provinceName, provinceId, regionId, regionName;  //省市区
+    List<String> mFeatureList=new ArrayList<>();
     String floorNum, totalFloorNum;
     @BindView(R.id.tv_area_title)
     TextView tvAreaTitle;
@@ -589,10 +589,20 @@ public class CheckHouseInfoActivity extends BaseActivity {
         CommonTagDialog dialog = new CommonTagDialog(this, list, new CommonTagDialog.OnConfirmListener() {
             @Override
             public void onConfirm(List<String> list) {
-
+                mFeatureList.clear();
+                mFeatureList.addAll(list);
+                showFeatureTag();
             }
         });
         dialog.show();
+    }
+
+    private void showFeatureTag(){
+        String tags="";
+        for(String tag:mFeatureList){
+            tags=tags+tag+" ";
+        }
+        tvFeature.setText(tags);
     }
 
     private void showPicture() {

@@ -445,6 +445,7 @@
 
             <TextView
                 android:id="@+id/tv_feature"
+                android:maxLength="10"
                 style="@style/unit_descr_tv_right" />
         </com.toda.broker.view.UnitDescriptionLayout>
     </LinearLayout>

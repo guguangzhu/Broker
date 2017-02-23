@@ -9,6 +9,8 @@ import android.widget.Button;
 import android.widget.TextView;
 
 import com.toda.broker.R;
+import com.toda.broker.util.HouseUtil;
+import com.toda.broker.util.UtilTools;
 import com.zhy.view.flowlayout.FlowLayout;
 import com.zhy.view.flowlayout.TagAdapter;
 import com.zhy.view.flowlayout.TagFlowLayout;
@@ -63,7 +65,12 @@ public class CommonTagDialog extends Dialog {
         idFlowLayoutFeature.setOnTagClickListener(new TagFlowLayout.OnTagClickListener() {
             @Override
             public boolean onTagClick(View view, int position, FlowLayout parent) {
-                // TODO: 2017/2/21 明天再写
+                String tag=mList.get(position);
+                if(mSelectedString.contains(tag)){
+                    mSelectedString.remove(tag);
+                }else {
+                    mSelectedString.add(tag);
+                }
                 return false;
             }
         });
@@ -72,12 +79,8 @@ public class CommonTagDialog extends Dialog {
     @OnClick(R.id.btn_confirm)
     public void onClick() {
 
-//        if (StringUtils.isEmpty(totalFloor)) {
-//            Toast.makeText(getContext(), "请输入楼层", Toast.LENGTH_SHORT).show();
-//            return;
-//        }
         if (listener != null) {
-//            listener.onConfirm(floor,totalFloor);
+            listener.onConfirm(mSelectedString);
             dismiss();
         }
     }

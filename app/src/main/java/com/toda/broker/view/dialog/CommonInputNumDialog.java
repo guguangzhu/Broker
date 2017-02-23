@@ -32,7 +32,7 @@ public class CommonInputNumDialog extends Dialog {
     public CommonInputNumDialog(Context context, String unit, OnConfirmListener listener) {
         super(context, R.style.customdialog);
         this.listener = listener;
-        contentView = getLayoutInflater().inflate(R.layout.dialog_input_floor, null);
+        contentView = getLayoutInflater().inflate(R.layout.dialog_input_num, null);
         this.unit = unit;
         setContentView(contentView);
         ButterKnife.bind(this, contentView);
